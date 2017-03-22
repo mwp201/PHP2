@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__.'/../Db.php';
-$db = new Db;
+
+require_once __DIR__.'/../autoloadClass.php';
+$db = new App\Models\Db;
 
 assert(true == $db->execute('INSERT INTO news (header, text, author)
                VALUES (:header, :text, :author)', [
@@ -13,7 +14,7 @@ assert(true == $db->execute('INSERT INTO news (header, text, author)
                   ':author' => 'lenta.ru']));
 
 assert(true == $db->execute('UPDATE news SET header = :header, author = :author WHERE id = :id',
-                           [':header' => 'Apple выпустила iPhone', ':author' => 'apple.com', ':id' => 10]));
+                           [':header' => 'Apple выпустила iPhone', ':author' => 'apple.com', ':id' => 3]));
 
 assert(false == $db->execute('UPDATE news1 SET header = :header, author = :author WHERE id = :id',
         [':header' => 'Apple выпустила iPhone', ':author' => 'apple.com', ':id' => 9]));
