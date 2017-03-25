@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\Settings;
 require_once __DIR__.'/../../autoloadClass.php';
 class Db
 {
@@ -8,7 +8,7 @@ class Db
 
     public function __construct()
     {
-        $this->config = new \App\Config('configDb.ini');
+        $this->config = \App\Config::instance();
         $this->dbh = new \PDO('mysql:host=' . $this->config->data['db']['host'] . ';dbname=' . $this->config->data['db']['dbname'] . '',
             $this->config->data['db']['user'], $this->config->data['db']['password']);
     }
@@ -31,6 +31,14 @@ class Db
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function lastInsertId($query, array $params = [])
+    {
+        $sth = $this->dbh->prepare($query);
+        if ($sth->execute($params)) {
+            return $this->dbh->lastInsertId();
         }
     }
 }

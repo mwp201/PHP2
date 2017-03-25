@@ -44,9 +44,9 @@
 <div class="wrap">
     <a class="link" href="index.php">Вернуться на главную</a>
     <div class="news">
-        <h2 class="news__header"><?php echo $data[0]->header; ?></h2>
-        <p class="news__description"><?php echo $data[0]->text; ?></p>
-        <p class="news__data">Автор : <?php echo $data[0]->author; ?></p>
+        <h2><?php echo $data->header; ?></h2>
+        <p class="news__description"><?php echo $data->text; ?></p>
+        <p class="news__data">Автор : <?php echo $data->author; ?></p>
     </div>
 </div>
 </body>

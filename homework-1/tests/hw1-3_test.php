@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__.'/../autoloadClass.php';
-$db = new App\Models\Db;
+$db = new App\Settings\Db;
 
 assert(true == $db->execute('INSERT INTO news (header, text, author)
                VALUES (:header, :text, :author)', [

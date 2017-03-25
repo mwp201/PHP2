@@ -8,18 +8,18 @@ abstract class Model
 
     public static function findAll()
     {
-        $db = new Db;
+        $db = new \App\Settings\Db;
         $sql = 'SELECT * FROM '.static::TABLE;
         return $db->query($sql, static::class);
     }
 
     public static function findById($id)
     {
-        $db = new Db;
-        $sql = 'SELECT * FROM '.static::TABLE.' WHERE id = '.$id;
-        $result = $db->query($sql, static::class);
+        $db = new \App\Settings\Db;
+        $sql = 'SELECT * FROM '.static::TABLE.' WHERE id = :id';
+        $result = $db->query($sql, static::class, [':id' => $id]);
         if ($result) {
-            return $result;
+            return $result[0];
         } else {
             return false;
         }
@@ -27,7 +27,7 @@ abstract class Model
 
     public static function findLatestNews()
     {
-        $db = new Db;
+        $db = new \App\Settings\Db;
         $sql = 'SELECT * FROM '.static::TABLE.' ORDER BY id DESC LIMIT 3';
         return $db->query($sql, static::class);
     }
@@ -48,8 +48,8 @@ abstract class Model
         }
         $sql = 'INSERT INTO '.static::TABLE.' ('.implode(', ', $colums).') VALUES ('.implode(', ', $params).')';
 
-        $db = new Db;
-        $db->execute($sql, $data);
+        $db = new \App\Settings\Db;
+        $this->id = $db->lastInsertId($sql, $data);
     }
 
     private function update($id)
@@ -64,16 +64,17 @@ abstract class Model
                     continue;
                 }
                 if (empty($value)) {
-                    $value = $dataObject[0]->$key;
+                    $value = $dataObject->$key;
                 }
                 $colums[] = $key;
                 $params[] = ':' . $key;
                 $data[':' . $key] = $value;
             }
+            $data[':id'] = $id;
             $sql = 'UPDATE ' . static::TABLE . ' SET ' .$colums[0]. ' = ' . $params[0] . ', '
                 . $colums[1] . ' = ' . $params[1] . ', '
-                . $colums[2] . ' = ' . $params[2] . ' WHERE id = '.$id;
-            $db = new Db;
+                . $colums[2] . ' = ' . $params[2] . ' WHERE id = :id';
+            $db = new \App\Settings\Db;
             $db->execute($sql, $data);
         }
     }
@@ -90,7 +91,7 @@ abstract class Model
     public function delete($id)
     {
         $sql = 'DELETE FROM '. static::TABLE .' WHERE id = :id';
-        $db = new Db;
+        $db = new \App\Settings\Db;
         $db->execute($sql, [':id' => $id]);
     }
 }
