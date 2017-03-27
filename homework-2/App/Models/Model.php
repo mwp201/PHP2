@@ -54,29 +54,19 @@ abstract class Model
 
     private function update($id)
     {
-        $dataObject = self::findById($id);
-        if ($dataObject) {
-            $colums = [];
-            $params = [];
-            $data = [];
-            foreach ($this as $key => $value) {
-                if ($key == 'id') {
-                    continue;
-                }
-                if (empty($value)) {
-                    $value = $dataObject->$key;
-                }
-                $colums[] = $key;
-                $params[] = ':' . $key;
+        $data = [];
+        $updatedValues = '';
+        foreach($this as $key => $value){
+            if (!empty($value)) {
+                $updatedValues .= $key . ' = :' . $key.', ';
                 $data[':' . $key] = $value;
             }
-            $data[':id'] = $id;
-            $sql = 'UPDATE ' . static::TABLE . ' SET ' .$colums[0]. ' = ' . $params[0] . ', '
-                . $colums[1] . ' = ' . $params[1] . ', '
-                . $colums[2] . ' = ' . $params[2] . ' WHERE id = :id';
-            $db = new \App\Settings\Db;
-            $db->execute($sql, $data);
         }
+        $data[':id'] = $id;
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' . rtrim($updatedValues, ', '). ' WHERE id = :id';
+
+        $db = new \App\Settings\Db;
+        $db->execute($sql, $data);
     }
 
     public function save($id = null)
