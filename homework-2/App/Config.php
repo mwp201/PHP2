@@ -8,7 +8,7 @@ class Config
 
     protected function __construct()
     {
-        $this->data['db'] = parse_ini_file(__DIR__.'/../configDb.ini');
+        $this->data['db'] = parse_ini_file('configDb.ini');
     }
 
     protected function __clone()
