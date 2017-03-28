@@ -18,7 +18,7 @@ abstract class Model
         $db = new \App\Settings\Db;
         $sql = 'SELECT * FROM '.static::TABLE.' WHERE id = :id';
         $result = $db->query($sql, static::class, [':id' => $id]);
-        if ($result) {
+        if ($result != false) {
             return $result[0];
         } else {
             return false;
@@ -34,7 +34,6 @@ abstract class Model
 
     private function insert()
     {
-        //var_dump(get_object_vars($this));
         $colums = [];
         $params = [];
         $data = [];
