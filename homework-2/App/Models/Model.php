@@ -63,10 +63,8 @@ abstract class Model
                 continue;
             }
 
-            if (!empty($value)){
-                $params[] = $key.'=:'.$key;
-                $data[':'.$key] = $value;
-            }
+            $params[] = $key.'=:'.$key;
+            $data[':'.$key] = $value;
 
         }
         $data[':id'] = $this->id;
