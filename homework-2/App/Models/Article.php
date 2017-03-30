@@ -8,4 +8,5 @@ class Article extends Model
     public $header;
     public $text;
     public $author;
+
 }

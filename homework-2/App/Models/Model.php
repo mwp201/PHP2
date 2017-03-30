@@ -32,13 +32,12 @@ abstract class Model
         return $db->query($sql, static::class);
     }
 
-    private function insert()
+    public function insert()
     {
-        //var_dump(get_object_vars($this));
         $colums = [];
         $params = [];
         $data = [];
-        foreach ($this as $key => $value) {
+        foreach ($this as $key => $value){
             if ($key == 'id') {
                 continue;
             }
@@ -49,34 +48,45 @@ abstract class Model
         $sql = 'INSERT INTO '.static::TABLE.' ('.implode(', ', $colums).') VALUES ('.implode(', ', $params).')';
 
         $db = new \App\Settings\Db;
-        $this->id = $db->lastInsertId($sql, $data);
+        $db->execute($sql, $data);
+        $this->id = $db->lastInsertId();
     }
 
-    private function update($id)
+
+    public function update()
     {
         $data = [];
-        $updatedValues = '';
+        $params = [];
+
         foreach($this as $key => $value){
-            if (!empty($value)) {
-                $updatedValues .= $key . ' = :' . $key.', ';
-                $data[':' . $key] = $value;
+            if ($key == 'id') {
+                continue;
             }
+
+            if (!empty($value)){
+                $params[] = $key.'=:'.$key;
+                $data[':'.$key] = $value;
+            }
+
         }
-        $data[':id'] = $id;
-        $sql = 'UPDATE ' . static::TABLE . ' SET ' . rtrim($updatedValues, ', '). ' WHERE id = :id';
+        $data[':id'] = $this->id;
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' .implode(', ', $params). ' WHERE id = :id';
 
         $db = new \App\Settings\Db;
         $db->execute($sql, $data);
-    }
 
-    public function save($id = null)
-    {
-        if (!empty($id)) {
-            $this->update($id);
-        } else {
-            $this->insert();
-        }
     }
+/*
+    public function save()
+    {
+        if (null == $this->id) {
+            $this->insert();
+            echo 'insert';
+        } else {
+            $this->update();
+            echo 'update';
+        }
+    }*/
 
     public function delete($id)
     {

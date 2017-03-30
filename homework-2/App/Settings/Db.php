@@ -34,11 +34,8 @@ class Db
         }
     }
 
-    public function lastInsertId($query, array $params = [])
+    public function lastInsertId()
     {
-        $sth = $this->dbh->prepare($query);
-        if ($sth->execute($params)) {
-            return $this->dbh->lastInsertId();
-        }
+        return $this->dbh->lastInsertId();
     }
 }

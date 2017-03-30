@@ -73,8 +73,8 @@
                 <input type="text" name="news[header]" id="news_header">
             </div>
         <div class="col">
-            <label for="news_id">ID новости</label>
-            <input type="text" name="news[id]" id="news_id">
+<!--            <label for="news_id">ID новости</label>-->
+<!--            <input type="text" name="news[id]" id="news_id">-->
         </div>
         <div class="col">
             <label for="news_author">Автор</label>
