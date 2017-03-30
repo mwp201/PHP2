@@ -18,7 +18,7 @@ abstract class Model
         $db = new \App\Settings\Db;
         $sql = 'SELECT * FROM '.static::TABLE.' WHERE id = :id';
         $result = $db->query($sql, static::class, [':id' => $id]);
-        if ($result) {
+        if ($result != false) {
             return $result[0];
         } else {
             return false;
