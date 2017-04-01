@@ -62,34 +62,28 @@ abstract class Model
             if ($key == 'id') {
                 continue;
             }
-
             $params[] = $key.'=:'.$key;
             $data[':'.$key] = $value;
-
         }
         $data[':id'] = $this->id;
         $sql = 'UPDATE ' . static::TABLE . ' SET ' .implode(', ', $params). ' WHERE id = :id';
-
         $db = new \App\Settings\Db;
         $db->execute($sql, $data);
-
     }
-/*
+
     public function save()
     {
         if (null == $this->id) {
             $this->insert();
-            echo 'insert';
         } else {
             $this->update();
-            echo 'update';
         }
-    }*/
+    }
 
-    public function delete($id)
+    public function delete()
     {
         $sql = 'DELETE FROM '. static::TABLE .' WHERE id = :id';
         $db = new \App\Settings\Db;
-        $db->execute($sql, [':id' => $id]);
+        $db->execute($sql, [':id' => $this->id]);
     }
 }

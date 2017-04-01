@@ -5,8 +5,7 @@ class Article extends Model
 {
     const TABLE = 'news';
 
-    public $header;
+    public $title;
     public $text;
     public $author;
-
 }

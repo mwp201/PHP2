@@ -66,30 +66,23 @@
 <body>
 <div class="wrap">
     <h2>Редактор новостей</h2>
-    <form class="admin-form">
+    <form class="admin-form" action="/homework-2/admin/add_news.php" method="post">
         <fieldset>
             <div class="row">
                 <label for="news_header">Заголовок новости</label>
-                <input type="text" name="news[header]" id="news_header">
+                <input type="text" name="news_title" id="news_title">
             </div>
         <div class="col">
-<!--            <label for="news_id">ID новости</label>-->
-<!--            <input type="text" name="news[id]" id="news_id">-->
-        </div>
-        <div class="col">
             <label for="news_author">Автор</label>
-            <input type="text" name="news[author]" id="news_author">
+            <input type="text" name="news_author" id="news_author">
         </div>
         <div class="row">
             <label for="news_text">Текст новости</label>
-            <textarea name="news[text]" id="news_text" cols="62" rows="10"></textarea>
+            <textarea name="news_text" id="news_text" cols="62" rows="10"></textarea>
         </div>
-        <input type="submit" formmethod="post" formaction="/homework-2/add_news.php" value="Добавить">
-         <input type="submit" formmethod="post" formaction="/homework-2/edit_news.php" value="Редактировать">
-         <input type="submit" formmethod="post" formaction="/homework-2/del_news.php" value="Удалить">
+        <input type="submit" value="Добавить" name="submit">
         </fieldset>
     </form>
-    <a class="link" href="index.php">Вернуться на главную</a>
 </div>
 </body>
 </html>

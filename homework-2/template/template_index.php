@@ -36,13 +36,14 @@
 </head>
 <body>
 <div class="wrap">
-    <a class="link" href="admin_panel.php">Вход в админ-панель</a>
+    <a class="link" href="./add_news.php">Добавить новость</a>
     <?php foreach($data as $value) : ?>
     <div class="news">
-        <h2><?php echo $value->header; ?></h2>
+        <h2><?php echo $value->title; ?></h2>
         <p><?php echo $value->text; ?></p>
         <p><?php echo $value->author; ?></p>
-        <a class="news__link" href="/homework-2/article.php?id=<?php echo $value->id; ?>">Узнать больше</a>
+        <a class="news__link" href="./edit_news.php?id=<?php echo $value->id; ?>">Редактировать</a>
+        <a class="news__link" href="./del_news.php?id=<?php echo $value->id; ?>">Удалить</a>
     </div>
     <?php endforeach;?>
 </div>
