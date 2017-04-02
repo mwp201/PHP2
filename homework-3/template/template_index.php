@@ -41,6 +41,7 @@
     <div class="news">
         <h2><?php echo $value->title; ?></h2>
         <p><?php echo $value->text; ?></p>
+        <p><?php echo $value->author; ?></p>
         <a class="news__link" href="./edit_news.php?id=<?php echo $value->id; ?>">Редактировать</a>
         <a class="news__link" href="./del_news.php?id=<?php echo $value->id; ?>">Удалить</a>
     </div>

@@ -72,13 +72,9 @@
                 <label for="news_header">Заголовок новости</label>
                 <input type="text" name="news_title" id="news_title">
             </div>
-        <div class="col">
-            <label for="news_author">Автор</label>
-            <input type="text" name="news_author" id="news_author">
-        </div>
-        <div class="row">
-            <label for="news_text">Текст новости</label>
-            <textarea name="news_text" id="news_text" cols="62" rows="10"></textarea>
+            <div class="row">
+                <label for="news_text">Текст новости</label>
+                <textarea name="news_text" id="news_text" cols="62" rows="10"></textarea>
         </div>
         <input type="submit" value="Добавить" name="submit">
         </fieldset>

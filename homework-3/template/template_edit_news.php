@@ -1,10 +1,3 @@
-<?php
-$id = null;
-if (!empty($_GET['id'])){
-    $id = $_GET['id'];
-}
-$article = \App\Models\Article::findById($_GET['id']);
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -78,6 +71,10 @@ $article = \App\Models\Article::findById($_GET['id']);
             <div class="row">
                 <label for="news_header">Заголовок новости</label>
                 <input type="text" name="news_title" id="news_title" value="<?php echo $article->title; ?>">
+            </div>
+            <div class="col">
+                <label for="news_author">Автор</label>
+                <input type="text" name="news_author" id="news_author" value="<?php echo $article->author; ?>">
             </div>
             <div class="row">
                 <label for="news_text">Текст новости</label>
