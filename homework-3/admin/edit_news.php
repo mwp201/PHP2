@@ -31,6 +31,6 @@ $article->author = $author;
 $article->id = $id;
 $article->save();
 if (!empty($_POST['submit'])){
-    header('Location:/homework-2/admin/index.php');
+    header('Location:/homework-3/admin/index.php');
 }
 include __DIR__.'/../template/template_edit_news.php';

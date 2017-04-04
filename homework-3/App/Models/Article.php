@@ -7,5 +7,5 @@ class Article extends Model
 
     public $title;
     public $text;
-    public $author;
+    public $author_id;
 }

@@ -52,7 +52,6 @@ abstract class Model
         $this->id = $db->lastInsertId();
     }
 
-
     public function update()
     {
         $data = [];
@@ -85,5 +84,12 @@ abstract class Model
         $sql = 'DELETE FROM '. static::TABLE .' WHERE id = :id';
         $db = new \App\Settings\Db;
         $db->execute($sql, [':id' => $this->id]);
+    }
+
+    public static function getAuthor()
+    {
+        $db = new \App\Settings\Db;
+        $sql = 'SELECT * FROM '.static::TABLE;
+        return $db->query($sql, static::class);
     }
 }
