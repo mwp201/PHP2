@@ -1,6 +1,7 @@
 <?php
-namespace App\Settings;
+namespace App\Dbconnect;
 require_once __DIR__.'/../../autoloadClass.php';
+//require_once __DIR__.'/../autoloadClass.php';
 class Db
 {
     protected $dbh;

@@ -66,7 +66,7 @@
 <body>
 <div class="wrap">
     <h2>Редактировать новость</h2>
-    <form class="admin-form" action="/homework-2/admin/edit_news.php" method="post">
+    <form class="admin-form" action="/homework-3/admin/edit_news.php" method="post">
         <fieldset>
             <div class="row">
                 <label for="news_header">Заголовок новости</label>
@@ -74,7 +74,37 @@
             </div>
             <div class="col">
                 <label for="news_author">Автор</label>
-                <input type="text" name="news_author" id="news_author" value="<?php echo $article->author; ?>">
+                <select name="news_author" id="news_author">
+                    <?php var_dump($article->author_id); ?>
+                    <?php switch($article->author_id) {
+                    case 1: echo
+                        '<option value="1" selected>apple.com</option>
+                        <option value="2">lenta.ru</option>
+                        <option value="3">РИА Новости</option>
+                        <option value="4">Reuters</option>';
+                     break;
+                     case 2: echo
+                         '<option value="1">apple.com</option>
+                         <option value="2" selected>lenta.ru</option>
+                         <option value="3">РИА Новости</option>
+                         <option value="4">Reuters</option>';
+                    break;
+                    case 3: echo
+                         '<option value="1">apple.com</option>
+                         <option value="2">lenta.ru</option>
+                         <option value="3" selected>РИА Новости</option>
+                         <option value="4">Reuters</option>';
+                     break;
+                     case 4: echo
+                         '<option value="1">apple.com</option>
+                         <option value="2">lenta.ru</option>
+                         <option value="3">РИА Новости</option>
+                         <option value="4" selected>Reuters</option>';
+                    break;
+                    default: echo
+                          '<option value="1" selected>apple.comttt</option>';
+                    } ?>
+                </select>
             </div>
             <div class="row">
                 <label for="news_text">Текст новости</label>

@@ -20,14 +20,14 @@ if (!empty($_POST['news_text'])) {
 if (!empty($_POST['news_author'])) {
     $author = $_POST['news_author'];
 } else {
-    $author = $oldData->author;
+    $author = $oldData->author_id;
 }
 if (!empty($_POST['news_id'])){
     $id = $_POST['news_id'];
 }
 $article->title = $title;
 $article->text = $text;
-$article->author = $author;
+$article->author_id = $author;
 $article->id = $id;
 $article->save();
 if (!empty($_POST['submit'])){
