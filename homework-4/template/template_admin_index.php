@@ -41,11 +41,11 @@
         <div class="news">
             <h2><?php echo $article->title; ?></h2>
             <p><?php echo $article->text; ?></p>
-            <p><?php echo $this->author[$article->author_id - 1]->name; ?></p>
+            <p><?php echo $this->authors[$article->author_id - 1]->name; ?></p>
             <a class="news__link" href="./edit_news.php?id=<?php echo $article->id; ?>">Редактировать</a>
             <a class="news__link" href="./del_news.php?id=<?php echo $article->id; ?>">Удалить</a>
         </div>
-    <?php endforeach;?>
+    <?php endforeach; ?>
 </div>
 </body>
 </html>
