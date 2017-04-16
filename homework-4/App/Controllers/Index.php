@@ -12,6 +12,9 @@ use App\Controller;
 
 class Index extends Controller
 {
+    /**
+     * This method returns all records from the database table
+     */
     protected function actionDefault()
     {
         $this->view->articles = \App\Models\Article::findAll();
@@ -26,6 +29,10 @@ class Index extends Controller
 
         $this->view->display(__DIR__.'/../../template/template_default.php');
     }
+
+    /**
+     * This method returns one entry from the database table
+     */
 
     protected function actionOne()
     {

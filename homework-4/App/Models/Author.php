@@ -12,5 +12,9 @@ class Author extends Model
 {
     const TABLE = 'authors';
 
+    /**
+     *
+     * @var string $name   The author's name of the article
+     */
     public $name;
 }

@@ -1,3 +1,10 @@
+<?php
+$id = null;
+if (!empty($_GET['id'])){
+    $id = $_GET['id'];
+}
+$article = \App\Models\Article::findById($_GET['id']);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -70,12 +77,12 @@
         <fieldset>
             <div class="row">
                 <label for="news_header">Заголовок новости</label>
-                <input type="text" name="news_title" id="news_title" value="<?php echo $this->view->article->title; ?>">
+                <input type="text" name="news_title" id="news_title" value="<?php echo $article->title; ?>">
             </div>
             <div class="col">
                 <label for="news_author">Автор</label>
                 <select name="news_author" id="news_author">
-                    <?php switch($this->view->article->author_id) {
+                    <?php switch($article->author_id) {
                     case 1: echo
                         '<option value="1" selected>apple.com</option>
                         <option value="2">lenta.ru</option>
@@ -107,9 +114,9 @@
             </div>
             <div class="row">
                 <label for="news_text">Текст новости</label>
-                <textarea name="news_text" id="news_text" cols="62" rows="10"><?php echo $this->view->article->text; ?></textarea>
+                <textarea name="news_text" id="news_text" cols="62" rows="10"><?php echo $article->text; ?></textarea>
             </div>
-            <input type="hidden" name="news_id" value="<?php echo $this->view->article->id; ?>">
+            <input type="hidden" name="news_id" value="<?php echo $article->id; ?>">
             <input type="submit" value="Обновить" name="submit">
         </fieldset>
     </form>
